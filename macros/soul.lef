@@ -1,0 +1,19 @@
+# LEF file generated for soul
+VERSION 5.8 ;
+NAMESCASESENSITIVE ON ;
+DIVIDERCHAR "/" ;
+BUSBITCHARS "[]" ;
+UNITS
+   DATABASE MICRONS 1000 ;
+END UNITS
+
+MACRO soul
+   CLASS BLOCK ;
+   FOREIGN soul 0 0 ;
+   SIZE 27.000 BY 27.000 ;
+   SYMMETRY X Y ;
+   OBS
+      LAYER Metal4 ;
+         RECT 0.000 0.000 27.000 27.000 ;
+   END
+END soul

@@ -5,6 +5,10 @@
 
 `default_nettype none
 
+(* blackbox *) (* keep *)
+module soul ();
+endmodule
+
 module tt_um_codingkatty_eram(
   input  wire [7:0] ui_in,    // Dedicated inputs
   output wire [7:0] uo_out,   // Dedicated outputs
@@ -15,6 +19,8 @@ module tt_um_codingkatty_eram(
   input  wire       clk,      // clock
   input  wire       rst_n     // reset_n - low to reset
 );
+  (* keep *)
+  soul logo();
 
   // VGA signals
   wire hsync;
