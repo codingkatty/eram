@@ -3,7 +3,7 @@ import gdstk
 CELL_NAME = "soul"
 
 # bweeh i have no clue how this workies (skulk)
-ART_LAYER, ART_DATATYPE = 81, 0   # Metal5...?
+ART_LAYER, ART_DATATYPE = 42, 0   # Metal3
 BOUNDARY_LAYER, BOUNDARY_DATATYPE = 0, 0
 
 
@@ -26,7 +26,7 @@ def write_lef(filename, cell_name, bounds):
         f.write(f"   SIZE {width:.3f} BY {height:.3f} ;\n")
         f.write("   SYMMETRY X Y ;\n")
         f.write("   OBS\n")
-        f.write("      LAYER Metal5 ;\n")
+        f.write("      LAYER Metal3 ;\n")
         f.write(f"         RECT {bounds[0]:.3f} {bounds[1]:.3f} {bounds[2]:.3f} {bounds[3]:.3f} ;\n")
         f.write("   END\n")
         f.write(f"END {cell_name}\n")
@@ -35,7 +35,7 @@ def write_lef(filename, cell_name, bounds):
 lib = gdstk.Library()
 cell = lib.new_cell(CELL_NAME)
 
-cell_width, cell_height = 9, 9
+cell_width, cell_height = 27, 27
 
 # PR boundary — required for macro placement
 cell.add(gdstk.rectangle(
@@ -43,7 +43,7 @@ cell.add(gdstk.rectangle(
     layer=BOUNDARY_LAYER, datatype=BOUNDARY_DATATYPE,
 ))
 
-points = [(0, 8), (1, 8), (1, 9), (3, 9), (3, 8), (4, 8), (4, 7), (5, 7), (5, 8), (6, 8), (6, 9), (8, 9), (8, 8), (9, 8), (9, 4), (8, 4), (8, 3), (7, 3), (7, 2), (6, 2), (6, 1), (5, 1), (5, 0), (4, 0), (4, 1), (3, 1), (3, 2), (2, 2), (2, 3), (1, 3), (1, 4), (0, 4)]
+points = [(0, 24), (3, 24), (3, 27), (9, 27), (9, 24), (12, 24), (12, 21), (15, 21), (15, 24), (18, 24), (18, 27), (24, 27), (24, 24), (27, 24), (27, 12), (24, 12), (24, 9), (21, 9), (21, 6), (18, 6), (18, 3), (15, 3), (15, 0), (12, 0), (12, 3), (9, 3), (9, 6), (6, 6), (6, 9), (3, 9), (3, 12), (0, 12)]
 
 poly = gdstk.Polygon(points, layer=ART_LAYER, datatype=ART_DATATYPE)
 
