@@ -13,7 +13,7 @@ MACRO soul
    SIZE 9.000 BY 9.000 ;
    SYMMETRY X Y ;
    OBS
-      LAYER Metal4 ;
+      LAYER Metal5 ;
          RECT 0.000 0.000 9.000 9.000 ;
    END
 END soul

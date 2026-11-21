@@ -3,7 +3,7 @@ import gdstk
 CELL_NAME = "soul"
 
 # bweeh i have no clue how this workies (skulk)
-ART_LAYER, ART_DATATYPE = 46, 0   # Metal4...?
+ART_LAYER, ART_DATATYPE = 81, 0   # Metal5...?
 BOUNDARY_LAYER, BOUNDARY_DATATYPE = 0, 0
 
 
@@ -26,7 +26,7 @@ def write_lef(filename, cell_name, bounds):
         f.write(f"   SIZE {width:.3f} BY {height:.3f} ;\n")
         f.write("   SYMMETRY X Y ;\n")
         f.write("   OBS\n")
-        f.write("      LAYER Metal4 ;\n")
+        f.write("      LAYER Metal5 ;\n")
         f.write(f"         RECT {bounds[0]:.3f} {bounds[1]:.3f} {bounds[2]:.3f} {bounds[3]:.3f} ;\n")
         f.write("   END\n")
         f.write(f"END {cell_name}\n")
