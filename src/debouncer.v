@@ -4,8 +4,8 @@ module debouncer #(
 )(
     input wire clk,           // System clock
     input wire rst_n,         // Active low reset
-    input wire button_in,     // Raw button input (noisy)
-    output wire btn_released   // Debounced button output
+    input wire [4:0] button_in,     // Raw button input (noisy)
+    output wire [4:0] btn_released   // Debounced button output
 );
 
     // Calculate counter value for debounce time
@@ -15,15 +15,14 @@ module debouncer #(
 
     // Internal registers
     reg [COUNTER_WIDTH-1:0] counter;
-    reg button_sync_0, button_sync_1;
-
-    reg button_debounced;
+    reg [4:0] button_sync_0, button_sync_1;
+    reg [4:0] button_debounced;
 
     // Double-flop synchronizer to avoid metastability
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
-            button_sync_0 <= 1'b1;
-            button_sync_1 <= 1'b1;
+            button_sync_0 <= 5'b11111;
+            button_sync_1 <= 5'b11111;
         end else begin
             button_sync_0 <= button_in;
             button_sync_1 <= button_sync_0;
@@ -34,7 +33,7 @@ module debouncer #(
     always @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
             counter <= 0;
-            button_debounced <= 1'b1;
+            button_debounced <= 5'b11111;
         end else begin
             if (button_sync_1 != button_debounced) begin
                 // Input differs from output, start/continue counting
@@ -50,11 +49,11 @@ module debouncer #(
         end
     end
 
-    reg btn_prev;
+    reg [4:0] btn_prev;
 
     always @(posedge clk or negedge rst_n) begin
       if (!rst_n) begin
-        btn_prev <= 1'b1;
+        btn_prev <= 5'b11111;
       end else begin
         btn_prev <= button_debounced;
       end

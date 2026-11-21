@@ -1,18 +1,17 @@
-module sprite_renderer(input wire [9:0] pix_x, input wire [9:0] pix_y, input wire [3:0] sprite_x, input wire [2:0] sprite_y, input wire is_friend, output wire [2:0] color);
+module sprite_renderer(
+  input wire in_screen,
+  input wire [3:0] grid_x,
+  input wire [2:0] grid_y,
+  input wire [2:0] local_x,
+  input wire [2:0] local_y,
+  input wire [3:0] sprite_x, 
+  input wire [2:0] sprite_y, 
+  input wire is_friend, 
+  output wire [2:0] color
+);
   reg [0:23] current_line;
 
-  wire [9:0] act_x;
-  wire [9:0] act_y;
-  
-  assign act_x = {1'b0, sprite_x, 5'b0} + 10'd128;
-  assign act_y = {2'b0, sprite_y, 5'b0} + 10'd112;
-
-  wire in_bounds = (pix_x >= act_x) && (pix_x < act_x + 10'd32) && (pix_y >= act_y) && (pix_y < act_y + 10'd32);
-
-  wire [9:0] diff_x = pix_x - act_x;
-  wire [9:0] diff_y = pix_y - act_y;
-  wire [2:0] local_x = diff_x[4:2];
-  wire [2:0] local_y = diff_y[4:2];
+  wire in_bounds = in_screen && (grid_x == sprite_x) && (grid_y == sprite_y);
 
   always @(*) begin
     if (!is_friend) begin
