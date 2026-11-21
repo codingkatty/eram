@@ -15,7 +15,5 @@ MACRO soul
    OBS
       LAYER met4 ;
          RECT 0.000 0.000 27.000 27.000 ;
-      LAYER met5 ;
-         RECT 0.000 0.000 27.000 27.000 ;
    END
 END soul
