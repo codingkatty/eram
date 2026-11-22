@@ -5,9 +5,11 @@
 
 `default_nettype none
 
-(* blackbox *) (* keep *)
-module soul ();
-endmodule
+`ifdef ASIC
+  (* blackbox *) (* keep *)
+  module soul ();
+  endmodule
+`endif
 
 module tt_um_codingkatty_eram(
   input  wire [7:0] ui_in,    // Dedicated inputs
@@ -19,11 +21,9 @@ module tt_um_codingkatty_eram(
   input  wire       clk,      // clock
   input  wire       rst_n     // reset_n - low to reset
 );
-  `ifndef ICE40
-  `ifndef FPGA
+  `ifdef ASIC
     (* keep *)
     soul logo ();
-  `endif
   `endif
 
   // VGA signals
